@@ -25,7 +25,9 @@ namespace Products.API
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureLogging();
-
+ 
+            services.AddCors();
+ 
             // Add services to the container.
             services.AddControllers();
 
@@ -52,6 +54,7 @@ namespace Products.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseMiddleware<ErrorHandlerMiddleware>();
 
